@@ -94,7 +94,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="vBk-Qe-3dn">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="RVH-FT-n1a">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="searchButtonAction:" destination="BYZ-38-t0r" id="GZn-Mn-47R"/>
                             </connections>

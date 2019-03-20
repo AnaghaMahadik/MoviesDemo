@@ -12,8 +12,9 @@ import AlamofireImage
 import SwiftyJSON
 
 class MoviewDetailsVC: UIViewController {
+    //var
     var movieDetailsData = [[String: AnyObject]]()
-    
+    //outlets
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
@@ -45,8 +46,5 @@ class MoviewDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         readDetails()
-        //name.text = movieDetailsData["title"]
     }
-    
-   
 }
