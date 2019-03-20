@@ -14,6 +14,7 @@ import SwiftyJSON
 class MoviewDetailsVC: UIViewController {
     //var
     var movieDetailsData = [[String: AnyObject]]()
+    
     //outlets
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
