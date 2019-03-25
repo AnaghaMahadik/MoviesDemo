@@ -14,6 +14,8 @@ import SwiftyJSON
 class MoviewDetailsVC: UIViewController {
     //var
     var movieDetailsData = [[String: AnyObject]]()
+    let formatter = DateFormatter()
+    let dateFormatterToDisplay = DateFormatter()
     
     //outlets
     @IBOutlet weak var img: UIImageView!
@@ -22,17 +24,22 @@ class MoviewDetailsVC: UIViewController {
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var details: UITextView!
     
-    func readDetails()
+    func readDetails() -> Void
     {
         let api_url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?api_key=\(key)&language=en-US")
         Alamofire.request(api_url!).responseJSON { response in
             let json = JSON(response.result.value!)
             
-            self.name.text = json["original_title"].string
-            self.details.text =  json["overview"].string
-            self.releaseDate.text = "Release Date : " + (json["release_date"].string!)
             let rating =  json["vote_average"].double
+           
+            self.formatter.dateFormat = "yyyy-MM-dd"
+            self.dateFormatterToDisplay.dateFormat = "MMM dd,yyyy"
+            let dateInDateFormat = self.formatter.date(from: (json["release_date"].string)!)
+            
+            self.name.text = json["original_title"].string
+            self.releaseDate.text = "Release Date : " + (self.dateFormatterToDisplay.string(from: dateInDateFormat!))
             self.rating.text = "\(rating ?? 0.0)"
+            self.details.text =  json["overview"].string
             
             Alamofire.request(("https://image.tmdb.org/t/p/w500\(json["backdrop_path"].string ?? "")")).responseData { (response) in
                 if response.error == nil {
